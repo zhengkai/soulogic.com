@@ -1,8 +1,33 @@
 header {
-	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.9);
 	a {
 		color: #eee;
+		&.navbar-brand {
+			margin-top: -0.75rem;
+			margin-bottom: -0.75rem;
+			padding-right: 2rem;
+			i {
+				width: 3rem;
+				font-size: 3rem;
+				margin-right: 1rem;
+				margin-left: -1rem;
+				vertical-align: text-top;
+				color: #ccc;
+			}
+			font-size: 2.5rem;
+			font-family: 'Roboto Condensed', sans-serif;
+			span:nth-of-type(1) {
+				font-weight: bold;
+			}
+			span:nth-of-type(3) {
+				color: #ccc;
+			}
+			&:hover {
+				span:nth-of-type(3), i {
+					color: #fff;
+				}
+			}
+		}
 		&:hover {
 			color: #fff;
 		}
