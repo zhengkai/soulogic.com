@@ -1,0 +1,10 @@
+header {
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.9);
+	a {
+		color: #eee;
+		&:hover {
+			color: #fff;
+		}
+	}
+}
