@@ -1,0 +1,78 @@
+@font-face {
+	font-family: 'Material Icons Sharp';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/assets/fonts/Material-Icons-Sharp.woff2') format('woff2');
+}
+
+.material-icons-sharp {
+	font-family: 'Material Icons Sharp';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	font-feature-settings: 'liga';
+	font-smoothing: antialiased;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+// @font-face {
+//     font-family: 'JetBrains Mono';
+//     src: url('/assets/fonts/JetBrainsMono-Italic.woff2') format('woff2');
+//     font-weight: 400;
+//     font-style: italic;
+// }
+//
+// @font-face {
+//     font-family: 'JetBrains Mono';
+//     src: url('/assets/fonts/JetBrainsMono-Medium.woff2') format('woff2');
+//     font-weight: 500;
+//     font-style: normal;
+// }
+//
+// @font-face {
+//     font-family: 'JetBrains Mono';
+//     src: url('/assets/fonts/JetBrainsMono-Medium-Italic.woff2') format('woff2');
+//     font-weight: 500;
+//     font-style: italic;
+// }
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+// @font-face {
+//     font-family: 'JetBrains Mono';
+//     src: url('/assets/fonts/JetBrainsMono-Bold-Italic.woff2') format('woff2');
+//     font-weight: 700;
+//     font-style: italic;
+// }
+//
+// @font-face {
+//     font-family: 'JetBrains Mono';
+//     src: url('/assets/fonts/JetBrainsMono-ExtraBold.woff2') format('woff2');
+//     font-weight: 900;
+//     font-style: normal;
+// }
+//
+// @font-face {
+//     font-family: 'JetBrains Mono';
+//     src: url('/assets/fonts/JetBrainsMono-ExtraBold-Italic.woff2') format('woff2');
+//     font-weight: 900;
+//     font-style: italic;
+// }
