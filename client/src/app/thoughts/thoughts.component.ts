@@ -40,7 +40,7 @@ export class ThoughtsComponent implements OnInit {
 			});
 		});
 
-		list.forEach(v => {
+		list.reverse().forEach(v => {
 			const s = Api.markdown(v);
 			this.long.push({
 				time: Date.now(),

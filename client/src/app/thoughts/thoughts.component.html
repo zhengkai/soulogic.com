@@ -1,13 +1,14 @@
-<div class="container-fluid">
 
-<div class="item-box">
+<div class="container-fluid main">
+
+<div class="item-box box-a">
 <div class="item" *ngFor="let s of short">
 	<time>{{ s.time | date : 'yyyy-MM-dd' }} <span>{{ s.time | date : 'HH:mm a' }}</span></time>
 	<article [innerHTML]="s.content"></article>
 </div>
 </div>
 
-<div class="item-box">
+<div class="item-box box-b">
 <div class="item" *ngFor="let s of long">
 	<time><span>{{ s.time | date : 'HH:mm a' }}</span> {{ s.time | date : 'dd MMM yyyy' }}</time>
 	<article [innerHTML]="s.content"></article>

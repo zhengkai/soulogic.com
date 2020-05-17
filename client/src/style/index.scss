@@ -10,6 +10,7 @@ html {
 }
 
 body {
+	min-width: 40rem;
 	min-height: 100%;
 	overflow-y: scroll;
 	background-color: #f9f9f9;
@@ -50,4 +51,10 @@ blockquote {
 p {
 	margin: 0;
 	padding: 0.5rem 0;
+	overflow: hidden;
+}
+
+a {
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

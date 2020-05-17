@@ -1,5 +1,34 @@
 $main-color: #183060;
 
+.main {
+	justify-content: center;
+	flex-flow: row wrap;
+	display: flex;
+	align-items: flex-start;
+}
+
+.item-box {
+	display: block;
+	width: 32rem;
+}
+
+.hero {
+	display: none;
+	width: 1000px;
+	justify-content: center;
+	flex-flow: row wrap;
+	display: flex;
+	align-items: flex-start;
+	background-color: red;
+
+	.sub {
+		background-color: green;
+		height: 500px;
+		width: 300px;
+		display: block;
+	}
+}
+
 div.item {
 	width: 30rem;
 	time {
@@ -14,4 +43,23 @@ div.item {
 			color: #999;
 		}
 	}
+
+	article {
+		p {
+			color: red;
+			width: 30rem;
+			overflow: hidden;
+			a {
+				text-overflow: ellipsis;
+			}
+		}
+	}
+}
+
+.box-a {
+	background-color: green;
+}
+
+.box-b {
+	background-color: red;
 }
