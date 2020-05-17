@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class NavService {
 
 	enable = true;
+	display = true;
 
 	category = [
 		{
@@ -29,6 +30,10 @@ export class NavService {
 
 	constructor() {
 		this.categorySelect = this.category[0].name;
+	}
+
+	setCategoryDisplay(enable: boolean) {
+		this.display = !!enable;
 	}
 
 	setCategory(name: string) {

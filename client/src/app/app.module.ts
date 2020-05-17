@@ -7,6 +7,7 @@ import { IndexComponent } from './index/index.component';
 import { NavComponent } from './common/nav.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { ThoughtsComponent } from './thoughts/thoughts.component';
+import { Error451Component } from './error/error451.component';
 
 @NgModule({
 	declarations: [
@@ -15,6 +16,7 @@ import { ThoughtsComponent } from './thoughts/thoughts.component';
 		NavComponent,
 		AboutMeComponent,
 		ThoughtsComponent,
+		Error451Component,
 	],
 	imports: [
 		BrowserModule,

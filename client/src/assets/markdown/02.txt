@@ -1,0 +1,2 @@
+本来想写 `if c.Col == v.Col && c.Row == v.Row {`
+结果写错了写了个 `v.Row == v.Row`，居然 golint 没报错，还是不够智能

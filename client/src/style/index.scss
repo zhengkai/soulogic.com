@@ -1,5 +1,8 @@
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/highlight.js/scss/github-gist.scss";
 @import "font.scss";
+
+@import "bootstrap-var.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
 html {
 	height: 100%;
@@ -9,7 +12,42 @@ html {
 body {
 	min-height: 100%;
 	overflow-y: scroll;
-	background-color: #eee;
+	background-color: #f9f9f9;
 	position: relative;
-	padding-bottom: 100px;
+	padding-bottom: 120px;
+}
+
+pre, code {
+	font-variant-ligatures: none;
+	background-color: $gray-200;
+}
+
+code {
+	padding: 0.125rem 0.25rem;
+	color: $body-color;
+}
+
+pre {
+	padding: 0.5rem 1rem;
+	> code {
+		background-color: transparent;
+		padding: 0;
+	}
+}
+
+a:hover {
+	text-underline-offset: 20%;
+}
+
+blockquote {
+	border-left: 0.25rem solid #dfe2e5;
+	padding: 0.5rem 1rem;
+	margin: 0;
+	color: $gray-700;
+	background-color: #fff;
+}
+
+p {
+	margin: 0;
+	padding: 0.5rem 0;
 }
