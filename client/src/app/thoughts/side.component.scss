@@ -1,0 +1,80 @@
+:host {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	height: calc(100vh - 10rem);
+	min-height: 20rem;
+
+	display: flex;
+	justify-content: center;
+	pointer-events: none;
+}
+
+.container {
+	pointer-events: none;
+	// background-color: red;
+}
+
+aside {
+	pointer-events: auto;
+	float: right;
+	width: calc(100% - 42rem);
+	display: none;
+	// background-color: rgba(255, 0, 0, 0.2);
+	// height: calc(100%-10rem);
+	height: 100%;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+	  width: 0.5rem;
+	}
+
+	&::-webkit-scrollbar-track {
+	  background: #f1f1f1;
+	}
+
+	&::-webkit-scrollbar-thumb {
+	  background: #888;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+	  background: #555;
+	}
+
+	p, ul {
+		background-color: #fff;
+	}
+	ul {
+		list-style-type: none;
+		padding: 0;
+		li {
+			a {
+				display: block;
+				padding: 0.5rem 0 0.5rem 2rem;
+				font-size: 1.25rem;
+				font-family: 'Roboto Condensed', monospace;
+				font-weight: bold;
+				span {
+					font-weight: normal;
+					margin-left: 0.5rem;
+					font-size: 0.875rem;
+					color: gray;
+				}
+				&:hover {
+					text-decoration: none;
+					span {
+						color: red;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	aside {
+		display: block;
+	}
+}

@@ -15,8 +15,23 @@ export class ThoughtsComponent implements OnInit {
 	short = [];
 	long = [];
 
+	post = [];
+
 	constructor(public ns: NavService) {
 		ns.setCategory('thoughts');
+
+		this.post.push({
+			time: '2019-06-08',
+			title: '智慧和道德观念',
+		});
+		this.post.push({
+			time: '2019-06-07',
+			title: '关于功利主义',
+		});
+		this.post.push({
+			time: '2018-01-14',
+			title: '恶魔之名',
+		});
 	}
 
 	ngOnInit(): void {
@@ -32,17 +47,22 @@ export class ThoughtsComponent implements OnInit {
 	async load() {
 
 		const list = await Api.fetch();
+		let id = 0;
 		list.forEach(v => {
+			id++;
 			const s = Api.markdown(v);
 			this.short.push({
+				id,
 				time: Date.now(),
 				content: s,
 			});
 		});
 
 		list.reverse().forEach(v => {
+			id++;
 			const s = Api.markdown(v);
 			this.long.push({
+				id,
 				time: Date.now(),
 				content: s,
 			});

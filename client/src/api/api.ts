@@ -5,13 +5,19 @@ export class Api {
 
 	static init = false;
 
+	static re: string[] = [];
+
 	static async fetch() {
-		const re: string[] = [];
+
+		if (this.re.length > 0) {
+			return this.re;
+		}
+
 		for (let i = 1; i <= 9; i++) {
 			const text = await this.fetchOne(i);
-			re.push(text);
+			this.re.push(text);
 		}
-		return re;
+		return this.re;
 	}
 
 	static async fetchOne(i: number) {

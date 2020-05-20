@@ -1,16 +1,21 @@
+<app-thoughts-side></app-thoughts-side>
 
-<div class="container-fluid main">
+<div class="container">
+
+<div class="post-box">
+<div class="item" *ngFor="let s of post">
+	<p>
+		<time>{{ s.time }}</time><a href="/?123">{{ s.title }}</a>
+	</p>
+</div>
+</div>
 
 <div class="item-box box-a">
-<div class="item" *ngFor="let s of short">
-	<time>{{ s.time | date : 'yyyy-MM-dd' }} <span>{{ s.time | date : 'HH:mm a' }}</span></time>
-	<article [innerHTML]="s.content"></article>
-</div>
-</div>
-
-<div class="item-box box-b">
 <div class="item" *ngFor="let s of long">
-	<time><span>{{ s.time | date : 'HH:mm a' }}</span> {{ s.time | date : 'dd MMM yyyy' }}</time>
+	<a class="link" routerLink="/thoughts/{{ s.id }}">
+		<span class="material-icons-sharp icon">link</span>
+		<time>{{ s.time | date : 'yyyy-MM-dd' }} <span>{{ s.time | date : 'HH:mm a' }}</span></time>
+	</a>
 	<article [innerHTML]="s.content"></article>
 </div>
 </div>
