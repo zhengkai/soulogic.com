@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Api } from '../../api';
+import { pb } from '../../pb/pb';
 
 import { NavService } from '../common/nav.service';
 
@@ -12,8 +13,8 @@ export class ThoughtsComponent implements OnInit {
 
 	isLoad = false;
 
-	short = [];
-	long = [];
+	short: pb.Post[] = [];
+	long: pb.Post[] = [];
 
 	post = [];
 
@@ -47,25 +48,26 @@ export class ThoughtsComponent implements OnInit {
 	async load() {
 
 		const list = await Api.fetch();
-		let id = 0;
+		let ID = 10;
+
 		list.forEach(v => {
-			id++;
+			ID++;
 			const s = Api.markdown(v);
 			this.short.push({
-				id,
-				time: Date.now(),
-				content: s,
-			});
+				ID,
+				tsCreate: Date.now(),
+				raw: s,
+			} as pb.Post);
 		});
 
 		list.reverse().forEach(v => {
-			id++;
+			ID++;
 			const s = Api.markdown(v);
 			this.long.push({
-				id,
-				time: Date.now(),
-				content: s,
-			});
+				ID,
+				tsCreate: Date.now(),
+				raw: s,
+			} as pb.Post);
 		});
 	}
 }

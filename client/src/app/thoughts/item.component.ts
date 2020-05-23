@@ -1,52 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Api } from '../../api';
-
-import { NavService } from '../common/nav.service';
+import { pb } from '../../pb/pb';
 
 @Component({
 	selector: 'app-thoughts-item',
 	templateUrl: './item.component.html',
 	styleUrls: ['./item.component.scss']
 })
-export class ThoughtsItemComponent implements OnInit {
+export class ThoughtsItemComponent implements OnChanges {
+
+	@Input() data: pb.Post;
+	@Input() link: boolean;
 
 	isLoad = false;
 
-	item = {
-		id: 0,
-		time: 0,
-		content: '',
-	};
+	constructor() { }
 
-	constructor(public ns: NavService) {
-		ns.setCategory('thoughts');
-	}
+	ngOnChanges(): void {
 
-	ngOnInit(): void {
-
-		if (this.isLoad) {
-			return;
-		}
-		this.isLoad = true;
-
-		this.load();
-	}
-
-	async load() {
-
-		const list = await Api.fetch();
-		const id = 321;
-
-		const one = list?.[7];
-		if (!one) {
-			return;
-		}
-
-		const s = Api.markdown(one);
-		this.item = {
-			id,
-			time: Date.now(),
-			content: s,
-		};
 	}
 }

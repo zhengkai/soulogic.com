@@ -10,14 +10,8 @@
 </div>
 </div>
 
-<div class="item-box box-a">
-<div class="item" *ngFor="let s of long">
-	<a class="link" routerLink="/thoughts/{{ s.id }}">
-		<span class="material-icons-sharp icon">link</span>
-		<time>{{ s.time | date : 'yyyy-MM-dd' }} <span>{{ s.time | date : 'HH:mm a' }}</span></time>
-	</a>
-	<article [innerHTML]="s.content"></article>
-</div>
+<div class="item-box">
+	<app-thoughts-item *ngFor="let s of short" [link]="true" [data]="s"></app-thoughts-item>
 </div>
 
 </div>

@@ -1,54 +1,61 @@
 $main-color: #183060;
 $blue: #007bff;
 
-div.item {
-	width: 40rem;
+.post-item {
+	width: 100%;
+	max-width: 40rem;
 	overflow: hidden;
-	a.link {
-		float: right;
-		font-size: 1rem;
-		padding: 0 1rem 0 4rem;
-		margin: 0.25rem 0;
-		text-decoration: none;
-		border-bottom: 1px solid #ddd;
-		.icon {
-			vertical-align: text-bottom;
-			height: 1.25rem;
-			font-size: 1.25rem;
-			line-height: 1.25rem;
-			display: none;
-			margin-right: 0.5rem;
-		}
-		time {
-			font-size: 1.25rem;
-			font-family: 'Roboto Condensed', monospace;
-			color: lighten($main-color, 20%);
-			font-weight: bold;
-			span {
-				color: #999;
-			}
-		}
-		&:hover {
-			padding-left: 2.5rem;
-			border-bottom: 1px solid $main-color;
-			.icon {
-				display: inline-block;
-			}
-			time > span {
-				color: lighten($main-color, 20%);
-			}
+}
+
+a.link, p.link {
+	float: right;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	padding: 0.25rem 1rem 0 4rem;
+	margin: 1rem 0 1rem;
+	text-decoration: none;
+	border-bottom: 1px solid #ddd;
+	.icon {
+		vertical-align: text-bottom;
+		height: 1.25rem;
+		font-size: 1.25rem;
+		line-height: 1.25rem;
+		display: none;
+		margin-right: 0.5rem;
+	}
+	time {
+		font-size: 1.25rem;
+		font-family: 'Roboto Condensed', monospace;
+		color: lighten($main-color, 20%);
+		font-weight: bold;
+		span {
+			color: #999;
 		}
 	}
+}
 
-	article {
-		clear: both;
-		p {
-			color: red;
-			width: 30rem;
-			overflow: hidden;
-			a {
-				text-overflow: ellipsis;
-			}
+p.link {
+	cursor: default;
+}
+
+a.link:hover {
+	padding-left: 2.5rem;
+	border-bottom: 1px solid $main-color;
+	.icon {
+		display: inline-block;
+	}
+	time > span {
+		color: lighten($main-color, 20%);
+	}
+}
+
+article {
+	clear: both;
+	p {
+		color: red;
+		overflow: hidden;
+		a {
+			text-overflow: ellipsis;
 		}
 	}
 }

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+package pb;
+
+message PostFormat {
+	enum Enum {
+		Plain = 0;
+		Markdown = 1;
+	}
+}
+
+message Post {
+	uint32 ID = 1;
+	PostFormat.Enum format = 2;
+	string raw = 3;
+	uint32 tsCreate = 4;
+}

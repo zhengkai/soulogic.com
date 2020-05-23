@@ -2,7 +2,7 @@
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 300;
   src:
     local('Roboto Condensed Light '),
@@ -14,7 +14,7 @@
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: italic;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 300;
   src:
     local('Roboto Condensed Light italic'),
@@ -26,7 +26,7 @@
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 400;
   src:
     local('Roboto Condensed Regular '),
@@ -38,7 +38,7 @@
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: italic;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 400;
   src:
     local('Roboto Condensed Regular italic'),
@@ -50,7 +50,7 @@
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 700;
   src:
     local('Roboto Condensed Bold '),
@@ -62,7 +62,7 @@
 @font-face {
   font-family: 'Roboto Condensed';
   font-style: italic;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 700;
   src:
     local('Roboto Condensed Bold italic'),

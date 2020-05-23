@@ -10,6 +10,7 @@ import { ThoughtsComponent } from './thoughts/index.component';
 import { Error451Component } from './error/error451.component';
 import { ThoughtsSideComponent } from './thoughts/side.component';
 import { ThoughtsItemComponent } from './thoughts/item.component';
+import { ThoughtsViewComponent } from './thoughts/view.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { ThoughtsItemComponent } from './thoughts/item.component';
 		Error451Component,
 		ThoughtsSideComponent,
 		ThoughtsItemComponent,
+		ThoughtsViewComponent,
 	],
 	imports: [
 		BrowserModule,

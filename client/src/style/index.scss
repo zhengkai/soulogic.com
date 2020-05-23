@@ -1,5 +1,6 @@
 @import "../../node_modules/highlight.js/scss/github-gist.scss";
 @import "font.scss";
+@import "roboto-condensed.scss";
 
 @import "bootstrap-var.scss";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
@@ -7,10 +8,10 @@
 html {
 	height: 100%;
 	min-height: 480px;
+	min-width: 320px;
 }
 
 body {
-	min-width: 40rem;
 	min-height: 100%;
 	overflow-y: scroll;
 	background-color: #f9f9f9;
@@ -57,4 +58,29 @@ p {
 a {
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.post-item > article {
+	pre {
+		max-height: min(100vw, 40rem);
+	}
+}
+
+.solid-scroll, .post-item > article pre {
+
+	&::-webkit-scrollbar {
+	  width: 0.5rem;
+	}
+
+	&::-webkit-scrollbar-track {
+	  background: #f1f1f1;
+	}
+
+	&::-webkit-scrollbar-thumb {
+	  background: #888;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+	  background: #555;
+	}
 }
