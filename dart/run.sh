@@ -1,13 +1,8 @@
 #!/bin/bash -ex
 
-cd "$(dirname "$(readlink -f "$0")")" || exit 1
+DIR="$(dirname "$(readlink -f "$0")")" && cd "$DIR" || exit 1
 
 . ./common.inc.sh
-
-NODEMODULE="${WWW}/client/node_modules"
-if [ -d "$NODEMODULE" ]; then
-	( cd "$NODEMODULE" && rm -rf ./*)
-fi
 
 cd "$WWW" || exit 1
 
@@ -17,6 +12,16 @@ git pull --rebase
 
 git checkout "$BRANCH"
 
-cd "${WWW}/client" && NG_CLI_ANALYTICS=ci npm i
+PACKAGE_SUM="${DIR}/package-sum"
+if ! md5sum -c "$PACKAGE_SUM" 2>/dev/null
+then
+	cd "$CLIENT"
+	rm -rf node_modules || :
+fi
+
+cd "${WWW}/proto"
+make client
 
 "${WWW}/client/dist/build.sh" "$DOMAIN" "$NAME"
+
+md5sum "${CLIENT}/package.json" > "$PACKAGE_SUM"

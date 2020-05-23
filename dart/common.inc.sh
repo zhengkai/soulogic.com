@@ -9,6 +9,7 @@ BRANCH="master"
 WH_PORT="9025"
 
 WWW="/www/${NAME}"
+CLIENT="${WWW}/client"
 
 START="/www/start"
 LOG="/log/${NAME}"

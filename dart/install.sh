@@ -7,7 +7,7 @@ DIR="$(dirname "$(readlink -f "$0")")" && cd "$DIR" || exit 1
 mkdir -p "$LOG"
 
 if [ ! -d "$WWW" ]; then
-	git clone --depth 1 --b "$BRANCH" "$GIT" "$WWW"
+	git clone --depth 1 --branch "$BRANCH" "$GIT" "$WWW"
 fi
 
 cd "$DIR" || exit 1
