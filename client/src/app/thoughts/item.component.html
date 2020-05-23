@@ -1,0 +1,10 @@
+<div class="container">
+
+<div class="item">
+	<a class="link" routerLink="/thoughts/{{ item?.id }}">
+		<span class="material-icons-sharp icon">link</span>
+		<time>{{ item?.time | date : 'yyyy-MM-dd' }} <span>{{ item?.time | date : 'HH:mm a' }}</span></time>
+	</a>
+	<article [innerHTML]="item?.content"></article>
+</div>
+</div>

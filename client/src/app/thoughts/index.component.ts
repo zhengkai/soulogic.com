@@ -5,8 +5,8 @@ import { NavService } from '../common/nav.service';
 
 @Component({
 	selector: 'app-thoughts',
-	templateUrl: './thoughts.component.html',
-	styleUrls: ['./thoughts.component.scss'],
+	templateUrl: './index.component.html',
+	styleUrls: ['./index.component.scss'],
 })
 export class ThoughtsComponent implements OnInit {
 
