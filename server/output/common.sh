@@ -1,4 +1,6 @@
-BIN="plutus-server"
+# shellcheck disable=SC2034
+
+BIN="soulogic-server"
 
 TYPE="${1:-dev}"
 
