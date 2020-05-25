@@ -1,13 +1,10 @@
 package main
 
 import (
-	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"time"
-
-	"github.com/dgraph-io/badger/v2"
 )
 
 var pwd string
@@ -16,11 +13,7 @@ func main() {
 
 	initMain()
 
-	db, err := badger.Open(badger.DefaultOptions(pwd + "/badger"))
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
+	initDB()
 }
 
 func initMain() (err error) {

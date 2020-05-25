@@ -3,8 +3,8 @@ SHELL := /bin/bash
 all: server client
 
 server:
-	# which protoc-gen-go >/dev/null || go get google.golang.org/protobuf/cmd/protoc-gen-go@v1.23.0
-	@echo server
+	which protoc-gen-go >/dev/null || go get google.golang.org/protobuf/cmd/protoc-gen-go@v1.24.0
+	protoc --go_out=../server/pb *.proto
 
 client:
 	[ ! -f ../client/node_modules/protobufjs/bin/pbjs ] && cd ../client && make init || :
