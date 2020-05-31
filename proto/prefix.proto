@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+package pb;
+
+message Prefix {
+	enum Enum {
+		NULL = 0;
+		Item = 1;
+		Revision = 2;
+	}
+}

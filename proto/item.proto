@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+package pb;
+
+message Item {
+	uint32 ID = 1;
+	bytes revisionHash = 2;
+	uint32 tsCreate = 3;
+	uint32 tsRevise = 4;
+	uint32 tsHide = 5;
+}

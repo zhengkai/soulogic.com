@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+package pb;
+
+import "post.proto";
+
+message Revision {
+	PostFormat.Enum format = 1;
+	string raw = 2;
+}

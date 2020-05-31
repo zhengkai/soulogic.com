@@ -10,10 +10,19 @@ import (
 var pwd string
 
 func main() {
+	jw(`start`)
 
 	initMain()
 
-	initDB()
+	defer closeLog()
+	initLog()
+
+	err := initDB()
+	if err != nil {
+		jw(`initDB fail:`, err)
+	}
+
+	test()
 }
 
 func initMain() (err error) {
