@@ -14,7 +14,11 @@ func Start(path string) (err error) {
 		return
 	}
 
-	AllKey()
+	allKey()
+
+	for k, v := range revPool {
+		j(k, v)
+	}
 
 	return
 }

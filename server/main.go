@@ -17,10 +17,9 @@ func main() {
 	defer closeLog()
 	initLog()
 
-	err := initDB()
-	if err != nil {
-		jw(`initDB fail:`, err)
-	}
+	initConfig()
+
+	server()
 
 	test()
 }

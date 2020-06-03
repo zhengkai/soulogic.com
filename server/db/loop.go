@@ -2,15 +2,16 @@ package db
 
 import (
 	"encoding/hex"
+	"soulogic/pb"
 
 	"github.com/dgraph-io/badger/v2"
 )
 
 // AllKey ...
-func AllKey() {
+func allKey() {
 
 	opt := badger.DefaultIteratorOptions
-	opt.PrefetchSize = 10
+	opt.PrefetchSize = 1000
 
 	/*
 		opt := &badger.IteratorOptions{
@@ -24,7 +25,7 @@ func AllKey() {
 
 	count := 0
 
-	err := db.View(func(txn *badger.Txn) error {
+	err := db.View(func(txn *badger.Txn) (err error) {
 		it := txn.NewIterator(opt)
 		defer it.Close()
 		for it.Rewind(); it.Valid(); it.Next() {
@@ -33,11 +34,20 @@ func AllKey() {
 
 			j(hex.EncodeToString(key))
 
-			GetRevision(key[1:])
+			var hash revHash
+			copy(hash[:], key[1:])
+
+			var r *pb.Revision
+			r, err = getDBRevision(hash)
+			if err != nil {
+				return
+			}
+
+			revPool[hash] = r
 
 			count++
 		}
-		return nil
+		return
 	})
 
 	j(`all key`, count, err)

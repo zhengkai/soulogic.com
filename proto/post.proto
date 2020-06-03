@@ -11,9 +11,6 @@ message PostFormat {
 	}
 }
 
-message Post {
-	uint32 ID = 1;
-	PostFormat.Enum format = 2;
-	string raw = 3;
-	uint32 tsCreate = 4;
+message PostTag {
+	repeated string tag = 1;
 }

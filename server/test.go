@@ -17,5 +17,6 @@ func test() {
 		Raw:    fmt.Sprintf(`test rpg %d`, ts()),
 	}
 
-	db.SetRevision(v)
+	null(v)
+	// db.SetRevision(v)
 }

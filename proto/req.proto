@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+package pb;
+
+import "req-public.proto";
+import "req-op.proto";
+
+message Auth {
+	string token = 1;
+}
+
+message ReqGateway {
+	uint64 ts = 1;
+	oneof one {
+		ReqPublicList public = 11;
+		ReqOpList op = 12;
+	}
+}
+
+message ReqPublicList {
+	repeated ReqPublic list = 1;
+}
+
+message ReqOpList {
+	Auth auth = 1;
+	repeated ReqOp list = 2;
+}
+

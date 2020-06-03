@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+package pb;
+
+import "rsp-public.proto";
+import "rsp-op.proto";
+
+message RspError {
+	uint32 code = 1;
+	string msg = 2;
+}
+
+message RspGateway {
+	uint64 ts = 1;
+	RspError error = 2;
+	oneof one {
+		RspPublicList public = 11;
+		RspOpList op = 12;
+	}
+}
+
+message RspPublicList {
+	repeated RspPublic list = 1;
+}
+
+message RspOpList {
+	repeated RspOp list = 1;
+}

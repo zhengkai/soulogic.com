@@ -9,32 +9,38 @@ import (
 )
 
 // SetRevision ...
-func SetRevision(d *pb.Revision) {
+func setDBRevision(d *pb.Revision) (hash revHash, err error) {
 
 	v, _ := proto.Marshal(d)
 
-	hash := sha1.Sum(v)
+	hash = sha1.Sum(v)
 
-	k := KeyRevision(hash[:])
+	revMutex.Lock()
 
-	j(`SaveRevision`, len(hash), len(v))
+	_, ok := revPool[hash]
+	if ok {
+		revMutex.Unlock()
+		return
+	}
+
+	defer revMutex.Unlock()
+
+	k := append([]byte{byte(pb.Prefix_Revision)}, hash[:]...)
 
 	txn := db.NewTransaction(true)
 	txn.Set(k, v)
-	txn.Commit()
-
-	item := &pb.Item{
-		RevisionHash: hash[:],
+	err = txn.Commit()
+	if err != nil {
+		return
 	}
 
-	j(item)
+	return
 }
 
-// GetRevision ...
-func GetRevision(key []byte) (r *pb.Revision, err error) {
+func getDBRevision(key revHash) (r *pb.Revision, err error) {
 
 	ab := []byte{byte(pb.Prefix_Revision)}
-	ab = append(ab, key...)
+	ab = append(ab, key[:]...)
 
 	var item *badger.Item
 	txn := db.NewTransaction(false)
@@ -53,10 +59,9 @@ func GetRevision(key []byte) (r *pb.Revision, err error) {
 
 	err = proto.Unmarshal(ab, r)
 	if err != nil {
+		r = nil
 		return
 	}
-
-	j(r)
 
 	return
 }
