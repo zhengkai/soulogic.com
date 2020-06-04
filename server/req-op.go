@@ -21,6 +21,7 @@ func (gw *gateway) eachOp(req *pb.ReqOp) (r *pb.RspOp, rspErr *pb.RspError) {
 	return
 }
 
-func (gw *gateway) opEcho(_ string) (re string, rspErr *pb.RspError) {
+func (gw *gateway) opEcho(s string) (re string, rspErr *pb.RspError) {
+	re = s
 	return
 }

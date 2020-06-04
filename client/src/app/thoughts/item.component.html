@@ -6,7 +6,7 @@
 	<p *ngIf="!link" class="link">
 		<ng-container *ngTemplateOutlet="time"></ng-container>
 	</p>
-	<article [innerHTML]="data.raw"></article>
+	<article [innerHTML]="data.revision.raw"></article>
 </div>
 
 <ng-template #time>

@@ -16,7 +16,7 @@ export class ThoughtsViewComponent implements OnInit {
 
 	id = 0;
 
-	item = { } as pb.Post;
+	item = { } as pb.Item;
 
 	constructor(
 		public ns: NavService,
@@ -61,6 +61,8 @@ export class ThoughtsViewComponent implements OnInit {
 
 		this.item.ID = 321;
 		this.item.tsCreate = Date.now(),
-		this.item.raw = one;
+		this.item.revision = {
+			raw: one
+		} as pb.Revision;
 	}
 }

@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	"soulogic/pb"
 
@@ -25,6 +26,8 @@ func handleGateway(w http.ResponseWriter, r *http.Request) {
 	}
 
 	gw.run()
+
+	gw.output()
 }
 
 type gateway struct {
@@ -46,6 +49,19 @@ func (gw *gateway) run() {
 	}
 
 	gw.dispatch()
+}
+
+func (gw *gateway) output() {
+
+	gw.rsp.Ts = uint64(time.Now().UnixNano() / 1000000)
+
+	b, err := proto.Marshal(gw.rsp)
+	if err != nil {
+		jw(`errMarshal`, err)
+		return
+	}
+	gw.rspLen = len(b)
+	gw.w.Write(b)
 }
 
 func (gw *gateway) check() (stop bool) {

@@ -1,11 +1,54 @@
 import * as marked from 'marked';
-import hljs from 'highlight.js';
+import { hljs } from 'highlight.js';
+import { pb } from '../pb/pb';
 
 export class Api {
 
 	static init = false;
 
+	static url = '/gateway';
+
 	static re: string[] = [];
+
+	static async post(body: Uint8Array) {
+
+		const res = await fetch(this.url, {
+			method: 'POST',
+			body,
+		});
+
+		if (!res.ok) {
+			console.warn(`server error, HTTP Status ${res.status}`);
+			return;
+		}
+
+		const buf = await res.arrayBuffer();
+
+		return new Uint8Array(buf);
+	}
+
+	static async gateway(req: pb.ReqGateway) {
+
+		const ab = pb.ReqGateway.encode(req).finish();
+
+		const re = await this.post(ab);
+		if (!re) {
+			console.warn(`post fail, req: ${req}`);
+			return;
+		}
+		if (!(re as Uint8Array).length) {
+			console.warn('server error, response empty');
+			return;
+		}
+
+		const x = pb.RspGateway.decode(re as Uint8Array);
+		if (!x) {
+			console.warn('decode RspGateway fail');
+			return;
+		}
+
+		return x;
+	}
 
 	static async fetch() {
 

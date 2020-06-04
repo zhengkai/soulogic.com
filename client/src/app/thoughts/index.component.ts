@@ -13,8 +13,8 @@ export class ThoughtsComponent implements OnInit {
 
 	isLoad = false;
 
-	short: pb.Post[] = [];
-	long: pb.Post[] = [];
+	short: pb.Item[] = [];
+	long: pb.Item[] = [];
 
 	post = [];
 
@@ -53,21 +53,29 @@ export class ThoughtsComponent implements OnInit {
 		list.forEach(v => {
 			ID++;
 			const s = Api.markdown(v);
-			this.short.push({
-				ID,
-				tsCreate: Date.now(),
+
+			const o = {} as pb.Item;
+			o.ID = ID;
+			o.tsCreate = Date.now();
+			o.revision = {
 				raw: s,
-			} as pb.Post);
+			} as pb.Revision,
+
+			this.short.push(o);
 		});
 
 		list.reverse().forEach(v => {
 			ID++;
 			const s = Api.markdown(v);
-			this.long.push({
-				ID,
-				tsCreate: Date.now(),
+
+			const o = {} as pb.Item;
+			o.ID = ID;
+			o.tsCreate = Date.now();
+			o.revision = {
 				raw: s,
-			} as pb.Post);
+			} as pb.Revision,
+
+			this.long.push(o);
 		});
 	}
 }

@@ -9,7 +9,7 @@ import { pb } from '../../pb/pb';
 })
 export class ThoughtsItemComponent implements OnChanges {
 
-	@Input() data: pb.Post;
+	@Input() data: pb.Item;
 	@Input() link: boolean;
 
 	isLoad = false;
