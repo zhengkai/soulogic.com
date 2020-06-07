@@ -16,9 +16,8 @@ func Start(path string) (err error) {
 
 	allKey()
 
-	for k, v := range revPool {
-		j(k, v)
-	}
+	table := db.Tables(false)
+	j(`table`, table)
 
 	return
 }

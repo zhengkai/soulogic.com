@@ -2,17 +2,19 @@ package db
 
 import (
 	"bytes"
+	"encoding/binary"
 	"errors"
 	"fmt"
 	"soulogic/pb"
 
+	"github.com/dgraph-io/badger/v2"
 	"google.golang.org/protobuf/proto"
 )
 
 var errItemNoChange = errors.New(`item no change`)
 
 // ItemSet ...
-func ItemSet(id uint32, rev *pb.Revision) (err error) {
+func ItemSet(id uint32, rev *pb.Revision) (rid uint32, err error) {
 
 	var revHash revHash
 	revHash, err = setDBRevision(rev)
@@ -33,15 +35,10 @@ func ItemSet(id uint32, rev *pb.Revision) (err error) {
 		}
 	}
 
-	v, _ := proto.Marshal(item)
-	k := append([]byte{byte(pb.Prefix_Revision)}, revHash[:]...)
+	err = setDBItem(item)
+	j(`setDBItem`, err)
 
-	txn := db.NewTransaction(true)
-	txn.Set(k, v)
-	err = txn.Commit()
-	if err != nil {
-		return
-	}
+	rid = item.ID
 
 	return
 }
@@ -65,7 +62,7 @@ func itemUpdate(id uint32, rev *pb.Revision, revHash revHash) (item *pb.Item, er
 
 	org, ok := itemPool[id]
 	if !ok {
-		err = fmt.Errorf(`item %d not found`, item)
+		err = fmt.Errorf(`item %d not found`, id)
 		return
 	}
 
@@ -82,6 +79,68 @@ func itemUpdate(id uint32, rev *pb.Revision, revHash revHash) (item *pb.Item, er
 		RevisionHash: revHash[:],
 		Revision:     rev,
 	}
+
+	return
+}
+
+func setDBItem(d *pb.Item) (err error) {
+
+	if d.ID < 1 {
+		err = errors.New(`empty item id`)
+		return
+	}
+
+	b := make([]byte, 4)
+	binary.LittleEndian.PutUint32(b, d.ID)
+
+	k := append([]byte{byte(pb.Prefix_Item)}, b...)
+
+	var tmpItem *pb.Item
+	tmpItem = proto.Clone(d).(*pb.Item)
+	tmpItem.Revision = nil
+
+	var v []byte
+	v, err = proto.Marshal(d)
+	if err != nil {
+		return
+	}
+
+	j(`save new item`, tmpItem)
+
+	txn := db.NewTransaction(true)
+	txn.Set(k, v)
+	err = txn.Commit()
+
+	return
+}
+
+func getDBItem(key []byte) (r *pb.Item, err error) {
+
+	ab := []byte{byte(pb.Prefix_Item)}
+	ab = append(ab, key[:]...)
+
+	var item *badger.Item
+	txn := db.NewTransaction(false)
+	item, err = txn.Get(ab)
+	if err != nil {
+		return
+	}
+	txn.Commit()
+
+	ab, err = item.ValueCopy(nil)
+	if err != nil {
+		return
+	}
+
+	r = &pb.Item{}
+
+	err = proto.Unmarshal(ab, r)
+	if err != nil {
+		r = nil
+		return
+	}
+
+	// id := binary.LittleEndian.Uint32(key)
 
 	return
 }

@@ -4,6 +4,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"soulogic/db"
 	"time"
 )
 
@@ -18,6 +19,8 @@ func main() {
 	initLog()
 
 	initConfig()
+
+	db.Start(pwd + `/badger`)
 
 	server()
 

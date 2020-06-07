@@ -7,5 +7,6 @@ package pb;
 message RspOp {
 	oneof one {
 		string echo = 1;
+		uint32 itemEdit = 2;
 	}
 }

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './common/routing.module';
 import { BootstrapComponent } from './common/bootstrap.component';
@@ -27,6 +28,7 @@ import { ThoughtsViewComponent } from './thoughts/view.component';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
+		FormsModule,
 	],
 	providers: [],
 	bootstrap: [

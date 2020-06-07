@@ -12,6 +12,9 @@ import { pb } from '../../pb/pb';
 })
 export class IndexComponent implements OnInit {
 
+	id = 0;
+	text = '123123\nabcdfeaf';
+
 	constructor(public ns: NavService) {
 		ns.setCategory('index');
 	}
@@ -21,7 +24,12 @@ export class IndexComponent implements OnInit {
 
 	async test() {
 
-		const x = await ApiOp.echo('abc ' + Date.now());
+		console.log('this.text', this.text);
+
+		const x = await ApiOp.echo(this.text || 'empty');
 		console.log('echo re', x);
+
+		const x2 = await ApiOp.itemEdit(this.id, this.text || 'empty');
+		console.log('echo itemEdit', x2);
 	}
 }

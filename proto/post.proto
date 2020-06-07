@@ -6,8 +6,9 @@ package pb;
 
 message PostFormat {
 	enum Enum {
-		Plain = 0;
-		Markdown = 1;
+		NULL = 0;
+		Plain = 1;
+		Markdown = 2;
 	}
 }
 

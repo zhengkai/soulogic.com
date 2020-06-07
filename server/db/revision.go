@@ -8,7 +8,6 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-// SetRevision ...
 func setDBRevision(d *pb.Revision) (hash revHash, err error) {
 
 	v, _ := proto.Marshal(d)
@@ -19,11 +18,16 @@ func setDBRevision(d *pb.Revision) (hash revHash, err error) {
 
 	_, ok := revPool[hash]
 	if ok {
+		j(`old revision`)
+
 		revMutex.Unlock()
 		return
 	}
 
-	defer revMutex.Unlock()
+	j(`new revision`)
+
+	revPool[hash] = d
+	revMutex.Unlock()
 
 	k := append([]byte{byte(pb.Prefix_Revision)}, hash[:]...)
 

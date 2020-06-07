@@ -8,6 +8,20 @@ export class ApiOp {
 		return re;
 	}
 
+	static async itemEdit(id: number, raw: string, format: pb.PostFormat.Enum = pb.PostFormat.Enum.Markdown) {
+
+		const ie = {
+			ID: id,
+			revision: {
+				format,
+				raw,
+			} as pb.Revision,
+		} as pb.IItemEdit;
+
+		const re = await this._single('itemEdit', ie);
+		return re;
+	}
+
 	static async _single(k: string, v: unknown) {
 		const req = { } as pb.ReqOp;
 		req[k] = v;
