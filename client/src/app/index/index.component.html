@@ -17,8 +17,9 @@
 
 <p><button class="btn btn-primary" (click)="test()">test</button></p>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<ng-container *ngIf="recent?.length">
+
+<app-item *ngFor="let d of recent" [data]="d"></app-item>
+</ng-container>
 
 </div>

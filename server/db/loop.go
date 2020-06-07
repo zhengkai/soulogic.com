@@ -11,24 +11,45 @@ import (
 // AllKey ...
 func allKey() {
 
-	opt := badger.DefaultIteratorOptions
-	opt.PrefetchSize = 1000
-
-	/*
-		opt := &badger.IteratorOptions{
-			PrefetchValue:  false,
-			PrefetchSize:   10,
-			AllVersion:     false,
-			Prefix:         []byte(`k`),
-			InternalAccess: false,
-		}
-	*/
+	var opt badger.IteratorOptions
 
 	count := 0
 
 	t := time.Now()
 
+	opt = badger.IteratorOptions{
+		PrefetchValues: false,
+		PrefetchSize:   100,
+		Reverse:        false,
+		AllVersions:    false,
+		Prefix:         []byte{2},
+	}
+
 	err := db.View(func(txn *badger.Txn) (err error) {
+		it := txn.NewIterator(opt)
+		defer it.Close()
+		for it.Rewind(); it.Valid(); it.Next() {
+
+			key := it.Item().Key()
+
+			err = initSwitchKey(key)
+			if err != nil {
+				j(`err`, err)
+			}
+			count++
+		}
+		return
+	})
+
+	opt = badger.IteratorOptions{
+		PrefetchValues: false,
+		PrefetchSize:   100,
+		Reverse:        false,
+		AllVersions:    false,
+		Prefix:         []byte{1},
+	}
+
+	err = db.View(func(txn *badger.Txn) (err error) {
 		it := txn.NewIterator(opt)
 		defer it.Close()
 		for it.Rewind(); it.Valid(); it.Next() {
@@ -64,8 +85,7 @@ func initSwitchKey(key []byte) (err error) {
 
 	case pb.Prefix_Revision:
 
-		var hash revHash
-		copy(hash[:], subKey)
+		hash := getRevHash(subKey)
 
 		var r *pb.Revision
 		r, err = getDBRevision(hash)

@@ -4,8 +4,10 @@ option go_package = ".;pb";
 
 package pb;
 
+import "item.proto";
+
 message RspPublic {
 	oneof one {
-		bool blogIndex = 1;
+		ItemList blogIndex = 1;
 	}
 }

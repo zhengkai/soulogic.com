@@ -41,6 +41,11 @@ func setDBRevision(d *pb.Revision) (hash revHash, err error) {
 	return
 }
 
+func getRevHash(key []byte) (hash revHash) {
+	copy(hash[:], key)
+	return
+}
+
 func getDBRevision(key revHash) (r *pb.Revision, err error) {
 
 	ab := []byte{byte(pb.Prefix_Revision)}

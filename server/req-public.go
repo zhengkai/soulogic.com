@@ -1,6 +1,9 @@
 package main
 
-import "soulogic/pb"
+import (
+	"soulogic/db"
+	"soulogic/pb"
+)
 
 func (gw *gateway) eachPublic(req *pb.ReqPublic) (r *pb.RspPublic, rspErr *pb.RspError) {
 
@@ -21,6 +24,11 @@ func (gw *gateway) eachPublic(req *pb.ReqPublic) (r *pb.RspPublic, rspErr *pb.Rs
 	return
 }
 
-func (gw *gateway) publicBlogIndex(_ bool) (re bool, rspErr *pb.RspError) {
+func (gw *gateway) publicBlogIndex(_ bool) (re *pb.ItemList, rspErr *pb.RspError) {
+
+	re = &pb.ItemList{
+		List: db.ItemRecent(),
+	}
+
 	return
 }

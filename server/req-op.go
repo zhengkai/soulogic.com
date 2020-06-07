@@ -13,6 +13,7 @@ func (gw *gateway) eachOp(req *pb.ReqOp) (r *pb.RspOp, rspErr *pb.RspError) {
 	switch one := req.One.(type) {
 
 	case *pb.ReqOp_Echo:
+
 		o := &pb.RspOp_Echo{}
 		o.Echo, rspErr = gw.opEcho(one.Echo)
 		if rspErr != nil {
@@ -21,6 +22,7 @@ func (gw *gateway) eachOp(req *pb.ReqOp) (r *pb.RspOp, rspErr *pb.RspError) {
 		rsp.One = o
 
 	case *pb.ReqOp_ItemEdit:
+
 		o := &pb.RspOp_ItemEdit{}
 		o.ItemEdit, rspErr = gw.opItemEdit(one.ItemEdit)
 		if rspErr != nil {

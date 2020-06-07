@@ -19,3 +19,7 @@ message ItemEdit {
 	uint32 ID = 1;
 	Revision revision = 2;
 }
+
+message ItemList {
+	repeated Item list = 1;
+}
