@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+package pb;
+
+message ItemContent {
+	enum Format {
+		MD = 0;
+		TEXT = 1;
+		HTML = 2;
+	}
+	Format format = 1;
+	string raw = 2;
+	bool is_quote = 3;
+}

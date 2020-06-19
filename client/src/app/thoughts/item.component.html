@@ -6,9 +6,9 @@
 	<p *ngIf="!link" class="link">
 		<ng-container *ngTemplateOutlet="time"></ng-container>
 	</p>
-	<article [innerHTML]="data.revision.raw"></article>
+	<article [innerHTML]="html"></article>
 </div>
 
 <ng-template #time>
-	<time>{{ data.tsCreate | date : 'yyyy-MM-dd' }} <span>{{ data.tsCreate | date : 'HH:mm a' }}</span></time>
+	<time>{{ data.tsCreate * 1000 | date : 'yyyy-MM-dd' }} <span>{{ data.tsCreate | date : 'HH:mm a' }}</span></time>
 </ng-template>

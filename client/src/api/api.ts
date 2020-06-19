@@ -79,7 +79,7 @@ export class Api {
 	static markdown(markdown: string) {
 		if (!this.init) {
 			this.init = true;
-			hljs.configure({ tabReplace: '__', });
+			// hljs.configure({ tabReplace: '__', });
 		}
 		return marked(markdown, {
 			gfm: true,

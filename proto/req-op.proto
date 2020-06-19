@@ -10,5 +10,6 @@ message ReqOp {
 	oneof one {
 		string echo = 1;
 		ItemEdit itemEdit = 2;
+		Item itemImport = 3;
 	}
 }

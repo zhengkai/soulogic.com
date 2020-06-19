@@ -1,7 +1,6 @@
 package db
 
 import (
-	"encoding/hex"
 	"soulogic/pb"
 	"time"
 
@@ -77,7 +76,7 @@ func allKey() {
 func initSwitchKey(key []byte) (err error) {
 	t := pb.Prefix_Enum(key[0])
 
-	j(`initSwitchKey`, hex.EncodeToString(key))
+	// j(`initSwitchKey`, hex.EncodeToString(key))
 
 	subKey := key[1:]
 

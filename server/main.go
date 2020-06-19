@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"soulogic/db"
+	"soulogic/imp"
 	"time"
 )
 
@@ -17,6 +18,11 @@ func main() {
 
 	defer closeLog()
 	initLog()
+
+	err := imp.Start()
+	if err != nil {
+		j(`mysql fail:`, err)
+	}
 
 	initConfig()
 

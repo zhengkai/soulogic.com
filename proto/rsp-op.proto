@@ -8,5 +8,6 @@ message RspOp {
 	oneof one {
 		string echo = 1;
 		uint32 itemEdit = 2;
+		uint32 itemImport = 2;
 	}
 }

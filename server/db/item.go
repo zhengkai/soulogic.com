@@ -47,6 +47,39 @@ func ItemSet(id uint32, rev *pb.Revision) (rid uint32, err error) {
 	return
 }
 
+// ItemImport ...
+func ItemImport(item *pb.Item) (rid uint32, err error) {
+
+	var revHash revHash
+	revHash, err = setDBRevision(item.Revision)
+	if err != nil {
+		return
+	}
+
+	item.TsRevise = ts()
+	item.TsHide = ts()
+
+	item.RevisionHash = revHash[:]
+
+	itemMutex.Lock()
+	defer itemMutex.Unlock()
+
+	err = setDBItem(item)
+	if err != nil {
+		return
+	}
+
+	if itemNextID <= item.ID {
+		itemNextID = item.ID + 1
+	}
+
+	// j(`setDBItem`, err)
+
+	rid = item.ID
+
+	return
+}
+
 func itemNew(rev *pb.Revision, revHash revHash) (item *pb.Item) {
 
 	item = &pb.Item{
@@ -150,7 +183,7 @@ func getDBItem(key []byte) (r *pb.Item, err error) {
 	revHash := getRevHash(r.RevisionHash)
 	r.Revision, _ = revPool[revHash]
 
-	j(`rev`, revHash, r.Revision)
+	// j(`rev`, revHash, r.Revision)
 
 	// id := binary.LittleEndian.Uint32(key)
 

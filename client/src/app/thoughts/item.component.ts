@@ -12,11 +12,20 @@ export class ThoughtsItemComponent implements OnChanges {
 	@Input() data: pb.Item;
 	@Input() link: boolean;
 
+	html = '';
+
 	isLoad = false;
 
 	constructor() { }
 
 	ngOnChanges(): void {
 
+		const raw = this.data?.revision?.raw;
+		if (!raw) {
+			return;
+		}
+
+		this.html = Api.markdown(raw);
+		// console.log(this.html);
 	}
 }
